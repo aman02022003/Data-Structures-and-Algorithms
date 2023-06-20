@@ -1,39 +1,25 @@
-#include<iostream>
-using namespace std;
-
-int binarysearch(int arr[] , int n ,int key){
-    int s=0;
-    int e=n-1;
-    int mid=s+e/2;
-    while(s<e)
-    {
-        if(arr[mid]==key)
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int s=0;
+        int e=nums.size()-1;
+        while(s<=e)
         {
-           return arr[mid];
+            int mid=s+(e-s)/2;
+            if(nums[mid]==target)
+            {
+                return mid;
+            }
+            if(target>nums[mid])
+            {
+                s=mid+1;
+            }
+            else
+            {
+                e=mid-1;
+            }
         }
-        if(arr[mid]>s)
-        {
-            s=mid+s;
-        }
-        if(arr[mid]<s)
-        {
-            e=mid-e;
-        }
-        mid=s+e/2;
+        return -1;
     }
-}
 
-int main(){
-
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    int key;
-    cin>>key;
-   cout<<"your target"<<" "<<binarysearch(arr,n,key);
-    
-    return 0;
-}
+};
